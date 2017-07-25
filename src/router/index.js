@@ -122,6 +122,11 @@ export default new Router({
       path: '/imagepicker',
       name: 'ImagePickerVue',
       component: resolve => require(['@/components/common/ImagePickerVue'])
+    },
+    {
+      path: '*',
+      name: 'PageNotFound',
+      component: resolve => require(['@/components/common/PageNotFound'], resolve)
     }
   ],
   scrollBehavior(to, from, savedPosition) {
