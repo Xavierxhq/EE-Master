@@ -48,6 +48,8 @@
         <div v-show="$store.getters.menuState" class="menu-mask" @click="hideMenu"></div>
       </transition>
     </div>
+    <!--主页面-->
+    <router-view></router-view>
   </div>
 </template>
 
@@ -152,6 +154,7 @@ import types from '@/store/types'
 import atypes from '@/store/action-types'
 import { Toast,Badge,MessageBox,Indicator } from 'mint-ui'
 import Database from '@/common/util/database'
+import BottomTab from '@/components/bottom-tab/bottom-tab'
 
 export default {
   name: 'hello',
@@ -161,7 +164,8 @@ export default {
     }
   },
   components: {
-    Badge
+    Badge,
+    BottomTab
   },
   mounted() {
     //还没有聊天记录，进行数据库读取

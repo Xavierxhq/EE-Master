@@ -1,7 +1,7 @@
 <template>
 	<div style="width: 100%;">
     <div class="title">
-      <router-link class="router-link" to="/home" replace>
+      <router-link class="router-link" to="/home/forum" replace>
       	<span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span >
       </router-link>
     	<span>好友列表</span>

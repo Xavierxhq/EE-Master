@@ -1,7 +1,7 @@
 <template>
   <div class="slide-course-div">
     <div class="title">
-      <router-link class="router-link" to="/home" replace><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span></router-link>
+      <router-link class="router-link" to="/home/forum" replace><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span></router-link>
       <span>课程</span>
     </div>
     <header class="header">
