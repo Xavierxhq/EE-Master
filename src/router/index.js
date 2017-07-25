@@ -15,8 +15,36 @@ export default new Router({
     },
     {
       path: '/home',
-      name: 'Home',
-      component: resolve => require(['@/components/Home'], resolve)
+      component: resolve => require(['@/components/Home'], resolve),
+      children: [
+        {
+          path: '',
+          component: resolve => require(['@/components/bottom-tab/bottom-tab'], resolve),
+          children: [
+          {
+            path: '/home/forum',
+            component:resolve => require(['@/components/forum/forum'], resolve),
+            children: [
+            {
+              path: '',
+              component:resolve => require(['@/components/forum/forum-news'], resolve),              
+            },
+            {
+              path: '/home/forum-say',
+              component:resolve => require(['@/components/forum/forum-say'], resolve),              
+            }
+            ]
+          },
+          {
+            path: '/home/teacher',
+            component:resolve => require(['@/components/teacher/teacher'], resolve)
+          },
+          {
+            path: '/home/cbroom',
+            component:resolve => require(['@/components/cbroom/cbroom'], resolve)
+          }]
+        }
+        ]
     },
     {
       path: '/course',

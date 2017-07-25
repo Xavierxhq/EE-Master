@@ -1,7 +1,7 @@
 <template>
   <div class="plan-div">
   <div class="title" >
-    <router-link class="router-link" to="/home" replace><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span></router-link>
+    <router-link class="router-link" to="/home/forum" replace><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span></router-link>
     <span class="center">学习计划</span>
     <transition-group name="fade">
       <span key="save" class="glyphicon glyphicon-saved" aria-hidden="true" @click="save" v-if="mark"></span >

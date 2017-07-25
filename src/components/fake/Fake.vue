@@ -49,7 +49,7 @@ export default {
 			Rongyun.setListenAndconnectRongyun()
 		}
 		setTimeout(()=> {
-			this.$router.replace('/home')
+			this.$router.replace('/home/forum')
 		},1000)
 	},
 	computed: {
