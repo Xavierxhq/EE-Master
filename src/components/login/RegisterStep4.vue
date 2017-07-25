@@ -40,9 +40,9 @@
 <script>
 import { mapGetters } from 'vuex'
 import types from '@/store/types'
-import Convert from '@/common/convert'
-import Storage from '@/common/storage'
-import Rongyun from '@/common/rongyun'
+import Convert from '@/common/util/convert'
+import Storage from '@/common/util/storage'
+import Rongyun from '@/common/util/rongyun'
 
 export default {
 	name: 'RegisterStep4',

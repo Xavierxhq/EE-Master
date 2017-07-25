@@ -3,7 +3,7 @@ import Vuex from 'vuex'
 import getters from './getters'
 import mutations from './mutations'
 import actions from './actions'
-import Storage from '@/common/storage'
+import Storage from '@/common/util/storage'
 import imgUrl from '@/assets/logo.png'
 import course from './modules/course'
 import note from './modules/note'
@@ -18,7 +18,7 @@ const state = {
   menustate: false,
   user: {
     user: localStorage.getItem(Storage.user) || 2,
-    userid: localStorage.getItem(Storage.userid) || 1,
+    userid: localStorage.getItem(Storage.userid) || 2,
     token: localStorage.getItem(Storage.token) || '0',
     email: localStorage.getItem(Storage.email) || '',
     password: localStorage.getItem(Storage.password) || '',

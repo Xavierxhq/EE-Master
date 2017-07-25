@@ -2,7 +2,7 @@
 	
 </template>
 
-<style lang="css" scoped>
+<style scoped>
 	
 </style>
 

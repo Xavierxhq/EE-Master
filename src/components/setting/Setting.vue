@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="title">
-      <router-link class="router-link" to="/home"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span></router-link>
+      <router-link class="router-link" to="/home" replace><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span></router-link>
       <span>设置</span>
     </div>
     <header class="header"></header>
@@ -27,7 +27,7 @@
 import { mapGetters } from 'vuex'
 import types from '@/store/types.js'
 import { Toast, MessageBox } from 'mint-ui'
-import Database from '@/common/database.js'
+import Database from '@/common/util/database.js'
 
 export default {
   name: 'Setting',

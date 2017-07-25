@@ -34,7 +34,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import icon from '@/assets/icon.png'
-import Rongyun from '@/common/rongyun'
+import Rongyun from '@/common/util/rongyun'
 
 export default {
 	name: 'Fake',
@@ -49,8 +49,8 @@ export default {
 			Rongyun.setListenAndconnectRongyun()
 		}
 		setTimeout(()=> {
-			this.$router.push('/home')
-		},1000);
+			this.$router.replace('/home')
+		},1000)
 	},
 	computed: {
 		...mapGetters([

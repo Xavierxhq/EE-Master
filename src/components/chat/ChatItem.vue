@@ -5,7 +5,7 @@
     <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true" v-if="chatmsg.from==user.userid && chatmsg.failed" @click="send"></span>
     <p :class="['content', chatmsg.from==user.userid ? 'user' : 'friend']">{{chatmsg.content}}</p>
     <p class="holder" v-if="!(chatmsg.from==user.userid)"></p>
-    <img class="headimg" v-if="chatmsg.from==user.userid" :src="user.headimg" @click="userDetail">
+    <router-link to="/userdetail"><img class="headimg" v-if="chatmsg.from==user.userid" :src="user.headimg"></router-link>
   </div>
 </template>
 
@@ -61,7 +61,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import { Toast } from 'mint-ui'
-import Rongyun from '@/common/rongyun'
+import Rongyun from '@/common/util/rongyun'
 
 export default {
   name: 'ChatItem',

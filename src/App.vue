@@ -66,6 +66,7 @@ a:link {
 .center {
   flex: 1;
   margin-left: .8rem;
+  text-overflow: ellipsis;
 }
 
 .title .glyphicon {

@@ -1,7 +1,7 @@
 <template>
   <div style="margin-top: 5rem;width: 100%;">
     <div class="title">
-      <router-link class="router-link" to="/home"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span></router-link>
+      <router-link class="router-link" to="/home" replace><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span></router-link>
       <span>笔记</span>
     </div>
     <div v-infinite-scroll="loadMore" infinite-scroll-disabled="loading" infinite-scroll-distance="8">

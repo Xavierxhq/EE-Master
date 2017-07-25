@@ -117,6 +117,11 @@ export default new Router({
       path: '/chat',
       name: 'Chat',
       component: resolve => require(['@/components/chat/Chat'], resolve)
+    },
+    {
+      path: '/imagepicker',
+      name: 'ImagePickerVue',
+      component: resolve => require(['@/components/common/ImagePickerVue'])
     }
   ],
   scrollBehavior(to, from, savedPosition) {

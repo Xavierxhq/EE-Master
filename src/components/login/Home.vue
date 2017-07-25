@@ -50,7 +50,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import { Radio,Spinner,Toast } from 'mint-ui'
-import Rongyun from '@/common/rongyun'
+import Rongyun from '@/common/util/rongyun'
 
 export default {
   name: 'Login',
@@ -87,11 +87,20 @@ export default {
             localStorage.setItem('password', response.data.password)
             localStorage.setItem('intro', response.data.intro)
             localStorage.setItem('token', response.data.token)
+            this.$store.commit(types.UPDATE_USER_USER, {
+              user: this.user,
+              userid: response.data.id,
+              name: response.data.name,
+              headimg: response.data.headimg,
+              email: response.data.email,
+              intro: response.data.intro,
+              token: response.data.token,
+            })
+						Rongyun.setListenAndconnectRongyun()
             //跳转到主页面
             setTimeout(() => {
               this.$router.push('/home')
             }, 500)
-						Rongyun.setListenAndconnectRongyun()
           } else {
             //联网成功但登录失败
             Toast({

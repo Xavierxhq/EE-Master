@@ -1,6 +1,6 @@
 import types from '@/store/types'
 import atypes from '@/store/action-types'
-import Database from '@/common/database'
+import Database from '@/common/util/database'
 
 const state = {
   /*
@@ -87,24 +87,27 @@ const mutations = {
   },
   [types.SAVE_TO_INDEXEDDB](state, payload) {
     //保存到数据库
-    for (let i = 0; i < state.newchats.length; i++) {
-      if ((state.newchats[i].from == payload.userid && state.newchats[i].to == payload.friendid)
-        || (state.newchats[i].from == payload.friendid && state.newchats[i].to == payload.userid)) {
-        console.log('该消息的id',state.newchats[i].id)
-        Database.add(state.newchats[i])
-        state.newchats.splice(i, 1)
-        i++
+    state.newchats.forEach((item, index, arr) => {
+      if ((item.from == payload.userid && item.to == payload.friendid) || (item.from == payload.friendid)) {
+        Database.add(item)
+        arr.splice(index, 1)
       }
-    }
+    })
     //标记未读消息为已读
-    for (let i = 0; i < state.unopen.length; i++) {
-      if (state.unopen[i].from == payload.friendid) {
-        state.unopen[i].unopen = false
-        Database.put(state.unopen[i])
-        state.unopen.splice(i, 1)
-        i--
+    state.unopen.forEach((item, index, arr) => {
+      if (item.from == payload.friendid) {
+        arr[index].unopen = false
+        Database.put(item)
+        state.unopen.splice(index, 1)
       }
-    }
+    })
+    Database.close()
+  },
+  [types.SAVE_TO_INDEXEDDB_AND_SAVEONLY](state) {
+    //保存到数据库
+    state.newchats.forEach(item => {
+      Database.add(item)
+    })
     Database.close()
   },
   [types.UPDATE_CHAT_UNOPEN](state) {

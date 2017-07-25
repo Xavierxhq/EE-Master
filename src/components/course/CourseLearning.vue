@@ -65,16 +65,16 @@ export default {
 	created() {
 		if (this.courseLearning.length === 0) {
 		  //该列表写暂无内容，进行访问
-		  this.fetchData()
+		  this.fetchUnfinishedCourses()
 		}
 		this.$store.commit(types.UPDATE_COURSE_ISDONE, 1)
 	},
 	methods: {
 		loadTop() {
-      this.fetchData()
+      this.fetchUnfinishedCourses()
     },
     loadBottom() {
-      this.fetchData()
+      this.fetchUnfinishedCourses()
     },
     showDetail(courseid, title) {
       //动态指定路由地址，并传递参数
@@ -82,7 +82,7 @@ export default {
         path: '/coursedetail/' + courseid + '/title/' + title
       });
     },
-    fetchData() {
+    fetchUnfinishedCourses() {
       let params = new URLSearchParams()
       params.append('studentid', this.getUser.userid)
       params.append('index', this.courseLearning.length)

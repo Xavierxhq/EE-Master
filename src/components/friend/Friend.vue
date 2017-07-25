@@ -1,14 +1,16 @@
 <template>
 	<div style="width: 100%;">
     <div class="title">
-      <span class="glyphicon glyphicon-menu-left" aria-hidden="true" @click="goBack" ></span >
+      <router-link class="router-link" to="/home" replace>
+      	<span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span >
+      </router-link>
     	<span>好友列表</span>
     </div>
     <div style="height: 5rem;"></div>
     <div class="friend-item" v-for="friend in friends" :key="friend.id" @click="friendDetail(friend.friend_id)">
       <img class="friend-headimg" :src="friend.friend_headimg">
       <p class="friend-username">{{friend.friend_name}}</p>
-			<div @click.stop="openChat(friend)">
+			<div @click.stop="openChatView(friend)">
 				<badge size="small" v-if="getMessageCount(friend.friend_id)">
 					<slot slot="name">{{getMessageCount(friend.friend_id)}}</slot>
 				</badge>
@@ -100,16 +102,13 @@ export default {
     	    this.$store.commit(types.ADD_FRIEND_FRIENDS, {friends: friends})
     	  });
 	  },
-	  goBack() {
-	    this.$router.go(-1)
-	  },
 		friendDetail(friendid) {
 			this.$router.push('/frienddetail/'+friendid)
 		},
 		getMessageCount(id) {
 			return this.unopen.filter(item => item.from==id).length
 		},
-		openChat(friend) {
+		openChatView(friend) {
       this.$store.commit(types.UPDATE_CHAT_CHATFRIEND, friend)
       this.$router.push('/chat')
     }

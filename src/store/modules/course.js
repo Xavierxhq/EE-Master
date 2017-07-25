@@ -18,17 +18,17 @@ const actions = {
 }
 
 const mutations = {
-  //给数组添加元素
+  //给正在学的课程添加元素
   [types.ADD_COURSE_LEARNING](state, { courses }) {
-    for (let i = 0; i < courses.length; i++) {
-      state.courseLearning.push(Object.freeze(courses[i]))
-    }
+    courses.forEach(item => {
+      state.courseLearning.push(Object.freeze(item))
+    })
   },
-  //给数组添加元素
+  //给课程记录添加元素
   [types.ADD_COURSE_LEARNED](state, { courses }) {
-    for (let i = 0; i < courses.length; i++) {
-      state.courseLearned.push(Object.freeze(courses[i]))
-    }
+    courses.forEach(item => {
+      state.courseLearned.push(Object.freeze(item))
+    })
   },
   //更新课程类别
   [types.UPDATE_COURSE_ISDONE](state, isdone) {

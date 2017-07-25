@@ -1,8 +1,9 @@
 <template>
-  <div class="hello">
+  <div>
     <div class="title">
       <span class="glyphicon glyphicon-align-left" aria-hidden="true" @click="showMenu"></span>
       <span class="app-name">ExcellentEducation</span>
+      <span class="glyphicon glyphicon-search" aria-hidden="true" @click="search"></span>
     </div>
     <!--侧滑的菜单栏-->
     <div class="menu" v-show="$store.getters.menuState">
@@ -150,7 +151,7 @@ import { mapGetters } from 'vuex'
 import types from '@/store/types'
 import atypes from '@/store/action-types'
 import { Toast,Badge,MessageBox,Indicator } from 'mint-ui'
-import Database from '@/common/database'
+import Database from '@/common/util/database'
 
 export default {
   name: 'hello',
@@ -233,6 +234,9 @@ export default {
           duration: 2000
         })
       }
+    },
+    search() {
+      
     }
   },
   computed: {

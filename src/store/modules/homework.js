@@ -22,15 +22,15 @@ const actions = {
 const mutations = {
   //给数组添加元素
   [types.ADD_HOMEWORK_UNDONE](state, homeworks) {
-    for (let i = 0; i < homeworks.length; i++) {
-      state.homeworkUndone.push(homeworks[i])
-    }
+    homeworks.forEach(item => {
+      state.homeworkUndone.push(item)
+    })
   },
   //给数组添加元素
   [types.ADD_HOMEWORK_DONE](state, homeworks) {
-    for (let i = 0; i < homeworks.length; i++) {
-      state.homeworkDone.push(homeworks[i])
-    }
+    homeworks.forEach(item => {
+      state.homeworkDone.push(item)
+    })
   },
   //更新作业类别
   [types.UPDATE_HOMEWORK_ISDONE](state, isdone) {

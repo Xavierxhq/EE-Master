@@ -10,7 +10,7 @@ import Storage from './storage'
 let db = {
   name: 'ChatDB',
   version: parseInt(localStorage.getItem(Storage.dbversion)) || 1,
-  store_name: 'ChatDBStore'
+  store_chat_record: 'ChatDBStore'
 }
 
 export default {
@@ -30,8 +30,8 @@ export default {
       request.onupgradeneeded = (event) => {
         console.log('数据库更新执行')
         this.DataBase = event.target.result
-        if (!(this.DataBase.objectStoreNames.contains(db.store_name))) {
-          this.DataBase.createObjectStore(db.store_name, {keyPath: 'id',autoIncrement: true})
+        if (!(this.DataBase.objectStoreNames.contains(db.store_chat_record))) {
+          this.DataBase.createObjectStore(db.store_chat_record, {keyPath: 'id',autoIncrement: true})
           console.log('objectStore已创建')
         }
       }
@@ -46,9 +46,9 @@ export default {
   put(data) {
     //这个方法若key值存在，会进行修改
     //打开事务
-    let transaction = this.DataBase.transaction(db.store_name, 'readwrite')
+    let transaction = this.DataBase.transaction(db.store_chat_record, 'readwrite')
     //打开仓库
-    let store = transaction.objectStore(db.store_name)
+    let store = transaction.objectStore(db.store_chat_record)
     //写入数据
     let request = store.put(data)
     request.onsuccess = (event) => {
@@ -60,8 +60,8 @@ export default {
   },
   add(data) {
     //这个方法若key值存在，不会进行修改
-    let transaction = this.DataBase.transaction(db.store_name, 'readwrite')
-    let store = transaction.objectStore(db.store_name)
+    let transaction = this.DataBase.transaction(db.store_chat_record, 'readwrite')
+    let store = transaction.objectStore(db.store_chat_record)
     let request = store.add(data)
     request.onsuccess = (event) => {
       console.log('插入数据到数据库成功,keyPath=', event.target.result)
@@ -71,8 +71,8 @@ export default {
     }
   },
   delete(key) {
-    let request = this.DataBase.transaction(db.store_name, 'readwrite')
-      .objectStore(db.store_name)
+    let request = this.DataBase.transaction(db.store_chat_record, 'readwrite')
+      .objectStore(db.store_chat_record)
       .delete(key)
     request.onsuccess = () => {
       console.log('删除数据成功')
@@ -84,7 +84,7 @@ export default {
   select(key) {
     return new Promise((resolve, reject) => {
       let request,
-          store = this.DataBase.transaction(db.store_name, 'readwrite').objectStore(db.store_name)
+          store = this.DataBase.transaction(db.store_chat_record, 'readwrite').objectStore(db.store_chat_record)
       if (key) {
         request = store.get(key)
       } else {
@@ -102,7 +102,7 @@ export default {
   },
   clear() {
     return new Promise((resolve, reject) => {
-      let request = this.DataBase.transaction(db.store_name, 'readwrite').objectStore(db.store_name)
+      let request = this.DataBase.transaction(db.store_chat_record, 'readwrite').objectStore(db.store_chat_record)
         .clear()
       request.onsuccess = () => {
         console.log('清空数据库数据成功')

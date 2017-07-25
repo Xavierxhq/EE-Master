@@ -14,9 +14,9 @@ const actions = {
 const mutations = {
   //给数组添加元素
   [types.ADD_FRIEND_FRIENDS](state, { friends }) {
-    for (let i = 0; i < friends.length; i++) {
-      state.friends.push(Object.freeze(friends[i]))
-    }
+    friends.forEach(item => {
+      state.friends.push(Object.freeze(item))
+    })
   },
   //修改好友备注
   [types.UPDATE_FRIEND_FRIEND](state, { friend }) {
@@ -31,7 +31,7 @@ const mutations = {
   },
   //添加好友
   [types.UPDATE_ADD_FRIEND](state, {friend}) {
-    state.friends = [friend].concat(...state.friends)
+    state.friends.unshift(friend)
   }
 }
 

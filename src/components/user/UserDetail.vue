@@ -121,7 +121,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import types from '@/store/types'
-import Convert from '@/common/convert.js'
+import Convert from '@/common/util/convert.js'
 import { Toast,MessageBox,Actionsheet } from 'mint-ui'
 
 export default {

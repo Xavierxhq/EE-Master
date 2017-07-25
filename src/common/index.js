@@ -88,7 +88,7 @@ http.interceptors.response.use(
       switch (error.response.status) {
         case 401:
           // 401 清除token信息并跳转到登录页面
-          store.commit(types.LOGOUT)
+          store.commit(types.RELEASE_LOGIN)
           router.replace({
             path: '/login',
             query: { redirect: router.currentRoute.fullPath }
@@ -100,7 +100,6 @@ http.interceptors.response.use(
 //判断JSON数据的数据元素个数
 const jsonUtil = {
   jsonLength: function (json) {
-    'use strict'
     let length = 0
     for (var item in json) {
       length++
@@ -112,33 +111,26 @@ const jsonUtil = {
 const timeUtil = {
   formatNumber(number) {
     //格式化个位数
-    'use strict'
     return number < 10 ? '0' + number : number
   },
   getDate() {
-    'use strict'
     //获取一个格式化的日期
     const time = new Date()
-    const timeStr = time.getFullYear() + '-' + this.formatNumber(time.getMonth() + 1) + '-' + this.formatNumber(time.getDate())
-    return timeStr
+    return time.getFullYear() + '-' + this.formatNumber(time.getMonth() + 1) + '-' + this.formatNumber(time.getDate())
   },
   getTime() {
-    'use strict'
     //获取一个格式化的时间
     const time = new Date()
-    const timeStr = time.getFullYear() + '-' + this.formatNumber(time.getMonth() + 1) + '-' + this.formatNumber(time.getDate()) +
+    return time.getFullYear() + '-' + this.formatNumber(time.getMonth() + 1) + '-' + this.formatNumber(time.getDate()) +
       ' ' + this.formatNumber(time.getHours()) + ':' + this.formatNumber(time.getMinutes())
-    return timeStr
   },
   formatTime(time) {
-    'use strict'
     //格式化日期
     if (undefined === time) {
       time = new Date()
     }
-    const timeStr = time.getFullYear() + '-' + this.formatNumber(time.getMonth() + 1) + '-' + this.formatNumber(time.getDate()) +
+    return time.getFullYear() + '-' + this.formatNumber(time.getMonth() + 1) + '-' + this.formatNumber(time.getDate()) +
       ' ' + this.formatNumber(time.getHours()) + ':' + this.formatNumber(time.getMinutes())
-    return timeStr
   }
 }
 

@@ -8,12 +8,10 @@ export default {
   },
   //清除数据
   [types.CLEAR](state) {
+    state.user = null
     state.user = {
-      user: 2,
       userid: 0,
       token: '0',
-      email: '',
-      password: '',
       name: '默认名',
       intro: '优质学习，在线互动',
       headimg: imgUrl
@@ -42,5 +40,15 @@ export default {
   [types.UPDATE_USER_NAME_AND_INTRO] (state, {data}) {
     state.user.name = data.name
     state.user.intro = data.intro
+  },
+  [types.RELEASE_LOGIN](state) {
+    state.user = null
+    state.user = {
+      userid: 0,
+      token: '0',
+      name: '默认名',
+      intro: '优质学习，在线互动',
+      headimg: imgUrl
+    }
   }
 }

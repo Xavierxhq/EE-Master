@@ -1,0 +1,17 @@
+{
+  "name": "Excellent Education",
+  "short_name": "EE",
+  "description": "Platform of Education and Tutoring",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#FFFFFF",
+  "theme_color": "#FFFFFF",
+  "icons": [
+    {
+      "src": "./src/assets/icon.png",
+      "size": "128x128",
+      "type": "image/png"
+    }
+  ]
+}

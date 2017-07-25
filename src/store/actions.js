@@ -1,6 +1,6 @@
 import atypes from './action-types'
 import types from './types'
-import Rongyun from '@/common/rongyun'
+import Rongyun from '@/common/util/rongyun'
 
 export default {
   [atypes.LOGOUT](context) {

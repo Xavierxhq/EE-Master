@@ -5,13 +5,12 @@
  * 消息监听并实现添加到聊天记录中
  */
 
-import App from './data/keys'
+import App from '@/common/data/keys'
 import Store from '@/store'
 import types from '@/store/types'
 
 export default {
   setListenAndconnectRongyun() {
-    'use strict'
     // 初始化
     // RongIMClient.init(appkey, [dataAccessProvider],[options])
     // appkey:官网注册的appkey。
@@ -49,6 +48,7 @@ export default {
     RongIMClient.setOnReceiveMessageListener({
       // 接收到的消息
       onReceived: function (message) {
+        console.log('接收到消息')
         console.log(message)
         // 判断消息类型
         switch (message.messageType) {
@@ -56,8 +56,8 @@ export default {
             //进行沉浸式状态栏通知
             
             Store.commit(types.ADD_CHAT_CHAT, {
-              from: parseInt(message.content.senderUserId),
-              to: parseInt(message.content.targetId),
+              from: parseInt(message.senderUserId),
+              to: parseInt(message.targetId),
               content: message.content.content,
               failed: false,
               unopen: true
@@ -142,18 +142,20 @@ export default {
     // 参数分别是
     // 对方用户的id，类型为字符串
     // 发送的消息
+    // 发送的消息的id
     // 发送的附加消息
-    'use strict'
     return new Promise((resolve, reject) => {
       let target = '' + targetId
       // 定义消息类型,文字消息使用 RongIMLib.TextMessage
-      var msg = new RongIMLib.TextMessage({ content: msg, extra: extra || '无附加信息' })
+      var msgObj = new RongIMLib.TextMessage({ content: msg, extra: extra || '无附加信息' })
       //或者使用RongIMLib.TextMessage.obtain 方法.具体使用请参见文档
       //var msg = RongIMLib.TextMessage.obtain("hello")
       var conversationtype = RongIMLib.ConversationType.PRIVATE // 私聊
-      RongIMClient.getInstance().sendMessage(conversationtype, target, msg, {
+      RongIMClient.getInstance().sendMessage(conversationtype, target, msgObj, {
         // 发送消息成功
         onSuccess: function (message) {
+          console.log('消息发送成功')
+          console.log(message)
           //message 为发送的消息对象并且包含服务器返回的消息唯一Id和发送消息时间戳
           Store.commit(types.UPDATE_CHAT_FAILED, { id: id, failed: false })
           resolve()
@@ -190,7 +192,6 @@ export default {
     })
   },
   getMessage() {
-    'use strict'
     //此接口必须在init()方法之后，连接融云服务器 connect 之前调用。
     return new Promise((resolve, reject) => {
       RongIMClient.getInstance().hasRemoteUnreadMessages(App.AppInfo.RONGYUNTOKEN, {

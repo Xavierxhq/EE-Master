@@ -1,15 +1,15 @@
 <template>
   <div class="chat-div">
     <div class="title">
-	  	<span class="glyphicon glyphicon-menu-left" aria-hidden="true" @click="goBack"></span >
+	  	<span class="glyphicon glyphicon-menu-left" aria-hidden="true" @click="backward"></span >
 	    <span class="center">{{chatfriend.friend_name}}</span>
 	  </div>
     <div class="message-content">
-      <chat-item v-for="chatmsg in getChats" :chatmsg="chatmsg" :key="chatmsg.id"></chat-item>
+      <chat-item v-for="chatmsg in getMessages" :chatmsg="chatmsg" :key="chatmsg.id"></chat-item>
     </div>
     <div class="text-div">
       <textarea class="text" contenteditable="true" v-model.lazy.trim="text"></textarea>
-      <span class="button" @click="send">发送</span>
+      <span class="button" @click="sendMessage">发送</span>
     </div>
   </div>
 </template>
@@ -70,8 +70,8 @@ import types from '@/store/types'
 import atypes from '@/store/action-types'
 import ChatItem from './ChatItem'
 import { MessageBox,Toast } from 'mint-ui'
-import Rongyun from '@/common/rongyun'
-import Database from '@/common/database'
+import Rongyun from '@/common/util/rongyun'
+import Database from '@/common/util/database'
 
 export default {
   name: 'Chat',
@@ -104,7 +104,7 @@ export default {
     }
   },
   methods: {
-    send() {
+    sendMessage() {
       if(this.text.length > 0) {
         //发送信息
         let chat = {
@@ -114,10 +114,10 @@ export default {
           failed: true,
           unopen: false
         }
+        this.text = ''
         this.$store.commit(types.ADD_CHAT_CHAT, chat)
-        Rongyun.sendMessage(this.chatfriend.friend_id, this.text, this.newchats[this.newchats.length-1].id)
+        Rongyun.sendMessage(chat.to, chat.content, this.newchats[this.newchats.length-1].id)
         .then(() => {
-          this.text = ''
         }).catch(info => {
           console.log(info)
           Toast({
@@ -125,7 +125,6 @@ export default {
             position: 'bottom',
             duration: 2000
           })
-          this.text = ''
         })
       } else {
         Toast({
@@ -135,25 +134,14 @@ export default {
         })
       }
     },
-    goBack() {
+    backward() {
       if(this.text.length > 0) {
         MessageBox.confirm('您还有未发送的消息，返回将不保留。是否返回？').then(action => {
-          this.$router.go(-1)
+          this.$router.back()
         })
       } else {
-        this.$router.go(-1)
+        this.$router.back()
       }
-    },
-    deleteStore() {
-      Database.deleteStore().then(result => {
-        result.init().then(() => {
-          console.log('数据库创建完成')
-        }).catch(error => {
-          console.log(error)
-        })
-      }).catch(error => {
-
-      })
     }
   },
   computed: {
@@ -163,8 +151,8 @@ export default {
       'newchats',
       'chatfriend'
     ]),
-    getChats() {
-      return this.chats.filter(item => (item.from==this.chatfriend.friend_id && item.to==this.user.userid) || (item.to==this.chatfriend.friend_id && item.from==this.user.userid))
+    getMessages() {
+      return this.chats.filter(item => (item.from==this.chatfriend.friend_id) || (item.to==this.chatfriend.friend_id && item.from==this.user.userid))
     }
   }
 }

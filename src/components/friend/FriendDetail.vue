@@ -85,7 +85,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import types from '@/store/types'
-import Convert from '@/common/convert.js'
+import Convert from '@/common/util/convert.js'
 
 export default {
   name: 'FriendDetail',
@@ -101,10 +101,10 @@ export default {
     }
   },
   created() {
-    this.fetchData()
+    this.fetchFriendInformation()
   },
   methods: {
-    fetchData() {
+    fetchFriendInformation() {
       this.$common.http.get(this.$common.api.UserInfo + '?studentid=' + this.getFriend.friend_id)
       .then(response => {
         this.friend.sub = response.data.sub

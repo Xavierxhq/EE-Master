@@ -4,7 +4,7 @@
 	    <router-link class="router-link" to="/homework"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span></router-link>
 	    <span class="center">我的作业</span>
 	    <transition name="fade">
-	      <span class="glyphicon glyphicon-saved" aria-hidden="true" @click="save" v-if="mark"></span>
+	      <span class="glyphicon glyphicon-saved" aria-hidden="true" @click="saveHomework" v-if="mark"></span>
 	    </transition>
 	  </div>
 	  <header class="header">
@@ -13,7 +13,7 @@
 	  </header>
 	  <div class="homework-content">
 	    <p class="homework-content-title">{{getHomework.title}}</p>
-	    <textarea class="homework-content-content" placeholder="我的答案..." v-model.lazy.trim="content" @change="change"></textarea>
+	    <textarea class="homework-content-content" placeholder="我的答案..." v-model.lazy.trim="content" @change="answerChangeTrigger"></textarea>
 	  </div>
 	</div>
 </template>
@@ -112,10 +112,10 @@ export default {
 		}
 	},
 	methods: {
-		change() {
+		answerChangeTrigger() {
 			this.mark = true;
 		},
-		save() {
+		saveHomework() {
 			let params = new URLSearchParams()
 			params.append('work_id', this.getHomework.id)
 			params.append('work_content', this.getHomework.content)
@@ -132,7 +132,7 @@ export default {
 		      	uptime: this.$common.timeUtil.getDate()
 		      };
 			    this.$store.commit(types.UPDATE_HOMEWORK_HOMEWORKS, data)
-			    this.$router.go(-1)
+			    this.$router.back()
 			  } else {
 			  	Toast({
 			  	  message: '保存失败!请重新保存',
@@ -148,7 +148,7 @@ export default {
         	uptime: this.$common.timeUtil.getDate()
         };
   	    this.$store.commit(types.UPDATE_HOMEWORK_HOMEWORKS, data)
-  	    this.$router.go(-1)
+  	    this.$router.back()
 			});
 		}
 	},

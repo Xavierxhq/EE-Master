@@ -19,9 +19,9 @@ const actions = {
 const mutations = {
   //给数组添加元素
   [types.ADD_NOTE_NOTES](state, { notes }) {
-    for (let i = 0; i < notes.length; i++) {
-      state.notes.push(notes[i])
-    }
+    notes.forEach(item => {
+      state.notes.push(item)
+    })
   },
   //修改全局保存的note对象，即显示详情的那一个
   [types.UPDATE_NOTE_NOTE](state, { note }) {
@@ -52,7 +52,6 @@ const mutations = {
   },
   //添加笔记
   [types.UPDATE_ADD_NOTE](state, {note}) {
-    console.log('添加笔记')
     state.notes.unshift(note)
   }
 }
