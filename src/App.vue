@@ -45,6 +45,7 @@ a:link {
   align-items: center;
   position: fixed;
   top: 0;
+  left: 0;
   padding: 1rem 0 1rem .8rem;
   width: 100%;
   font-size: 1.8rem;

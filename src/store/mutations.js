@@ -41,6 +41,9 @@ export default {
     state.user.name = data.name
     state.user.intro = data.intro
   },
+  [types.UPDATE_USER_HEADIMG](state, imgUrl) {
+    state.user.headimg = imgUrl
+  },
   [types.RELEASE_LOGIN](state) {
     state.user = null
     state.user = {

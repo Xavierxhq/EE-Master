@@ -1,16 +1,16 @@
 <template>
 	<div>
 	  <div class="title">
-	  	<span class="glyphicon glyphicon-menu-left" aria-hidden="true" @click="goBack"></span >
+	  	<span class="glyphicon glyphicon-menu-left" aria-hidden="true" @click="backward"></span >
 	    <span class="center">关于我</span>
 	    <span class="glyphicon glyphicon-saved" aria-hidden="true" v-if="ifModified" @click="modify"></span>
 	    <span class="glyphicon glyphicon-option-vertical" aria-hidden="true" v-if="!ifModified" @click="showMenu"></span>
 	  </div>
 	  <div class="headimg-div"><img class="headimg" :src="headimg" @click.stop="showSheet"></div>
 	  <div class="line-div">
-	  	<span class="line-flex">{{name}}</span>
+	  	<span class="line-flex" @click="modifyName">{{name}}</span>
 	  	<span class="line-flex">{{gender | genderFilter}}</span>
-	  	<span class="line-flex">{{tel}}</span>
+	  	<span class="line-flex" @click="modifyTel">{{tel}}</span>
 	  </div>
     <div class="line-div">
       <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
@@ -123,6 +123,7 @@ import { mapGetters } from 'vuex'
 import types from '@/store/types'
 import Convert from '@/common/util/convert.js'
 import { Toast,MessageBox,Actionsheet } from 'mint-ui'
+import Storage from '@/common/util/storage'
 
 export default {
 	data() {
@@ -150,7 +151,7 @@ export default {
 				{
 					name: '本地相册',
 					method: () => {
-
+						this.$router.replace('/imagepicker')
 					}
 				}
 			]
@@ -159,10 +160,11 @@ export default {
 	components: {
 		Actionsheet
 	},
-	mounted() {
+	created() {
 		this.headimg = this.user.headimg
 		this.intro = this.user.intro
 		this.name = this.user.name
+
     let params = new URLSearchParams()
     params.append('studentid', this.user.userid)
     this.$common.http.post(this.$common.api.UserInfo, params)
@@ -180,14 +182,34 @@ export default {
       })
 	},
 	methods: {
-		goBack() {
+		backward() {
 		  if (this.ifModified) {
 		    MessageBox.confirm('返回将丢失修改的内容。是否返回？').then(action => {
-		      this.$router.go(-1)
+		      this.$router.back()
 		    })
 		  } else {
-		    this.$router.go(-1)
+		    this.$router.back()
 		  }
+		},
+		modifyName() {
+			MessageBox.prompt('请输入姓名:').then(({value, action}) => {
+				this.name = value
+				this.ifModified = true
+			})
+		},
+		modifyTel() {
+			MessageBox.prompt('请输入手机号:').then(({value, action}) => {
+				if (/1[0-9]{10}/.test(value)) {
+					this.tel = value
+					this.ifModified = true
+				} else {
+					Toast({
+					  message: '请输入正确的手机号',
+					  position: 'bottom',
+					  duration: 2000
+					})
+				}
+			})
 		},
 	  modify() {
 	    let params = new URLSearchParams()
@@ -211,11 +233,13 @@ export default {
 	      	  position: 'bottom',
 	      	  duration: 2000
 	      	})
+	      	localStorage.setItem(Storage.name, this.name)
+	      	localStorage.setItem(Storage.intro, this.intro)
 	        this.$store.commit(types.UPDATE_USER_NAME_AND_INTRO, {
 	        	name: this.name,
 	        	intro: this.intro
 	        })
-	        this.$router.go(-1)
+	        this.$router.back()
 	      }).catch(error => {
 
 	      })

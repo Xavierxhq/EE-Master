@@ -11,42 +11,9 @@ import axios from 'axios'
 import router from '@/router'
 import store from '@/store'
 import { Indicator, Toast } from 'mint-ui'
+import api from './data/api'
 
-//服务器项目地址
 const BASEURL = 'http://10.253.16.12:8080/ExcellentEducation/'
-//各个servlet的api接口
-const api = {
-  //作业列表
-  HomeworkList: 'HomeworkListServletMobile',
-  //已完成的某个作业的具体详情
-  HomeworkFinishInfo: 'HomeworkfinishMessageServletMobile',
-  //未完成的某个作业的详情
-  HomeworkUnfinishInfo: 'HomeworkunfinishMessageServletMobile',
-  //增加更新/作业
-  HomeworkUpdate: 'HomeworkUpdateServletMobile',
-  //获取学生学习计划
-  PlanInfo: 'StudyplanListServletMobile',
-  //增加/更新学生学习计划
-  StudyPlanUpdate: 'StudyPlanUpdateServlet',
-  //获取学生课程记录列表
-  StudentCourseRecordList: 'RecordcourseListServletMobile',
-  //获得学生好友列表
-  StudentFriendList: 'FriendListServletMobile',
-  //学生笔记列表
-  StudentNoteList: 'GetStudentNoteListServletMobile',
-  //获取学生笔记详情
-  StudentNoteInfo: 'StudenntnoteMessageServletMobile',
-  //更新/添加笔记
-  StudentNoteUpdate: 'StudentnoteServletMobile',
-  //用户注册
-  Register: 'RegisterServletMobile',
-  //用户登录
-  Login: 'LoginServletMobile',
-  //获取个人详细信息
-  UserInfo: 'GetstudentInfoMobile',
-  //个人信息修改
-  InfoUpdate: 'InfoUpdateServletMobile'
-}
 //自定义axios对象，使用这个进行联网
 const http = axios.create({
   baseURL: BASEURL,
