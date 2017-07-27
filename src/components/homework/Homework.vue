@@ -1,7 +1,7 @@
 <template>
  <div style="width: 100%;">
     <div class="title">
-      <router-link class="router-link" to="/home" replace><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span></router-link>
+      <router-link class="router-link" to="/home/forum" replace><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span></router-link>
       <span>作业</span>
     </div>
     <header class="header">
