@@ -1,6 +1,7 @@
 <template>
 	<div class="wrap">
 		<img :src="img" class="wrap-img">
+		<p class="wrap-p">页面找不到啦~你可以</p>
 		<div class="wrap-buttons">
 			<span class="wrap-button back" @click="backward">返回</span>
 			<router-link class="wrap-button home" to="/home" replace>首页</router-link>
@@ -22,6 +23,13 @@
 		width: 100%;
 		height: auto;
 		box-shadow: 0px 1px 4px #AAAAAA;
+	}
+
+	.wrap-p {
+		margin: 24px 0 12px 0;
+		width: 100%;
+		text-align: center;
+		color: #999999;
 	}
 
 	.wrap-buttons {
