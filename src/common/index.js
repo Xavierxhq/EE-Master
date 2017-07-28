@@ -6,12 +6,12 @@
  * timeUtil:对日期操作的方法封装
  */
 
-import Vue from 'Vue'
-import axios from 'axios'
-import router from '@/router'
-import store from '@/store'
-import { Indicator, Toast } from 'mint-ui'
-import api from './data/api'
+import Vue from 'Vue';
+import axios from 'axios';
+import router from '@/router';
+import store from '@/store';
+import { Indicator, Toast } from 'mint-ui';
+import api from './data/api';
 
 const BASEURL = 'http://10.253.16.12:8080/ExcellentEducation/'
 //自定义axios对象，使用这个进行联网
