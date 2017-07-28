@@ -1,11 +1,12 @@
+
 <template>
   <div>
     <div style="height: 4rem;"></div>
     <div class="forum">
-      <router-link tag="div" class="forum-item" to="/home/forum">
+      <router-link tag="div" class="forum-item" to="/home/forum/forum-news">
         <span class="forum-link">资 讯</span>
       </router-link>
-      <router-link tag="div" class="forum-item" to="/home/forum-say">
+      <router-link tag="div" class="forum-item" to="/home/forum/forum-say">
         <span class="forum-link">我想说</span>
       </router-link>
     </div>
@@ -14,7 +15,13 @@
 </template>
 
 <script type="text/ecmascript-6">
-  export default {}
+  export default {
+    mounted() {
+      setTimeout(()=> {
+        this.$router.replace('/home/forum/forum-news')
+      },1)
+  }
+  }
 </script>
 
 <style scoped lang="stylus" rel="stylesheet/stylus">

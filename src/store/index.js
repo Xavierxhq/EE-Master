@@ -11,6 +11,8 @@ import plan from './modules/plan'
 import friend from './modules/friend'
 import homework from './modules/homework'
 import chatMessage from './modules/chat-message'
+import forum from './modules/forum'
+import teacher from './modules/teacher'
 
 Vue.use(Vuex)
 
@@ -39,6 +41,8 @@ export default new Vuex.Store({
     plan,
     friend,
     homework,
-    chatMessage
+    chatMessage,
+    forum,
+    teacher
   }
 })

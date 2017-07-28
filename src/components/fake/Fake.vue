@@ -30,7 +30,7 @@
 	color: #999999;
 }
 </style>
-	
+
 <script>
 import { mapGetters } from 'vuex'
 import icon from '@/assets/icon.png'
@@ -49,7 +49,7 @@ export default {
 			Rongyun.setListenAndconnectRongyun()
 		}
 		setTimeout(()=> {
-			this.$router.replace('/home/forum')
+			this.$router.replace('/home/forum/forum-news')
 		},1000)
 	},
 	computed: {
