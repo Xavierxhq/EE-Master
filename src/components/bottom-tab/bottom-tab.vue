@@ -8,9 +8,9 @@
       <router-link tag="div" class="tab-item" to="/home/teacher">
         <span class="tab-link">教师</span>
       </router-link>
-      <router-link tag="div" class="tab-item" to="/home/cbroom">
-        <span class="tab-link">直播间</span>
-      </router-link>
+     <router-link tag="div" class="tab-item" to="/cbroom">
+      <span class="tab-link">直播间</span>
+    </router-link>
     </div>
   </div>
 </template>
@@ -23,6 +23,8 @@
   @import "~common/stylus/variable"
   .tab
     position: fixed;
+    z-index: 999;
+    background-color: #434343;
     left: 0;
     bottom: 0;
     right: 0;
@@ -39,6 +41,6 @@
         color: $color-text
       &.router-link-active
         .tab-link
-          color: $color-theme
-          border-bottom: 2px solid $color-theme
+          color: white
+          border-bottom: 2px solid white
 </style>

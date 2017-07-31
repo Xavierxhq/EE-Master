@@ -35,6 +35,9 @@
                 <slot slot="name">{{unopen.length}}</slot>
               </badge>
             </router-link>
+            <router-link to="/favorite" class="menu-link-a">
+                <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>我的收藏
+            </router-link>
             <router-link to="/setting" class="menu-link-a">
               <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>设置
             </router-link>

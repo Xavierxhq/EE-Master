@@ -1,119 +1,67 @@
 <template>
- <div>
-    <div style="height: 5rem;"></div>
-    <div class="teacher-item" v-for="china in getTeachers">
-      <img class="teacher-headimg" :src="china.teacher_headimg">
-      <p class="teacher-username">{{china.teacher_name}}</p>
+  <div>
+    <div style="height: 4rem;"></div>
+    <div class="teacher">
+      <router-link class="teacher-item" to="/home/teacher/teacher-china">
+        <span class="teacher-link">语 文</span>
+      </router-link> 
+      <router-link tag="div" class="teacher-item" to="/home/teacher/teacher-math">
+        <span class="teacher-link">数 学</span>
+      </router-link>
+      <router-link tag="div" class="teacher-item" to="/home/teacher/teacher-english">
+        <span class="teacher-link">英 语</span>
+      </router-link>
+      <router-link tag="div" class="teacher-item" to="/home/teacher/teacher-physical">
+        <span class="teacher-link">物 理</span>
+      </router-link>
+      <router-link tag="div" class="teacher-item" to="/home/teacher/teacher-chemistry">
+        <span class="teacher-link">化 学</span>
+      </router-link>
+      <router-link tag="div" class="teacher-item" to="/home/teacher/teacher-biological">
+        <span class="teacher-link">生 物</span>
+      </router-link>
+      <router-link tag="div" class="teacher-item" to="/home/teacher/teacher-political">
+        <span class="teacher-link">政 治</span>
+      </router-link>
+      <router-link tag="div" class="teacher-item" to="/home/teacher/teacher-history">
+        <span class="teacher-link">历 史</span>
+      </router-link>
+      <router-link tag="div" class="teacher-item" to="/home/teacher/teacher-geography">
+        <span class="teacher-link">地 理</span>
+      </router-link>
     </div>
+    <router-view></router-view>
   </div>
-</div>
 </template>
 
-<script>
-import types from '@/store/types'
-import { mapGetters } from 'vuex'
-import Logo from '@/assets/logo.png'
-import { Toast,Badge } from 'mint-ui'
-
-export default {
-	name: 'Teacher',
-	data() {
-	  return {
-	    teacher: []
-	  }
-	},
-	components: {
-		Badge
-	},
-	created() {
-	  if(this.teachers.length<1) {
-	  	this.fetchTeachers(1)
-	  }
-	},
-	methods: {
-	  fetchTeachers(submark) {
-    	this.$common.http.get(this.$common.api.TeacherList+'?submark='+submark)
-    	  .then(response => {
-    	    this.$store.commit(types.ADD_TEACHER_TEACHERS, {
-    	      teacher: response.data,
-    	      submark: submark
-    	    })
-    	  })
-    	  .catch(error => {
-    	    //测试数据
-    	    let teacher = [{
-    	      submark: 1,
-    	      submarkname: '语文',
-    	      teacher_id: 1,
-    	      teacher_headimg: Logo,
-    	      teacher_name: '张建新',
-              intro: '讲课简单易懂，平易近人。'
-    	    }, {
-    	      submark: 1,
-    	      submarkname: '语文',
-    	      teacher_id: 2,
-    	      teacher_headimg: Logo,
-    	      teacher_name: '胡荣玲',
-    	      intro: '讲课简单易懂，平易近人。'
-    	    }, {
-    	      submark: 1,
-    	      submarkname: '语文',
-    	      teacher_id: 5,
-    	      teacher_headimg: Logo,
-    	      teacher_name: '蔡红',
-    	      intro: '讲课简单易懂，平易近人。'
-    	    }]
-    	    this.$store.commit(types.ADD_TEACHER_TEACHERS, {teacher: teacher, submark: submark})
-    	  });
-	  },
-	  goBack() {
-	    this.$router.back()
-	  }		
-	},
-	computed: {
-	  ...mapGetters([
-	  	'teachers',
-			'user'
-		]),
-		getTeachers() {
-		  return this.teachers[1]
-		}
-	}
-}
+<script type="text/ecmascript-6">
+  export default {
+    mounted() {
+      setTimeout(()=> {
+        this.$router.replace('/home/teacher/teacher-china')
+      },1)
+  }
+  }
 </script>
 
-<style lang="css" scoped>
-.teacher-item {
-	display: flex;
-	align-items: center;
-	padding: 8px;
-	margin: 0;
-	width: 100%;
-	border-bottom: .5px solid #BBB;
-	overflow-x: hidden;
-}
-
-.teacher-headimg {
-	padding: 0;
-	margin: 0;
-	width: 60px;
-	height: 60px;
-	border-radius: 50%;
-}
-
-.teacher-username {
-	flex: 1;
-	margin: 0 0 0 4px;
-	padding: 0 0 0 4px;
-	color: #424242;
-	font-size: 14px;
-}
-
-.teacher-hint-text {
-	margin: 0;
-	padding: 12px 0;
-	width: 100%;
-	text-align: center;
-	color: #A0A0A0;
-}
+<style scoped lang="stylus" rel="stylesheet/stylus">
+  @import "~common/stylus/variable"
+  .teacher
+    display: flex
+    height: 44px
+    line-height: 44px
+    font-size: $font-size-medium
+    .teacher-item
+      flex: 1
+      text-align: center
+      font-size:13px
+      .teacher-link
+        padding-bottom: 5px
+        padding-left: 5px
+        color: black
+        text-align: center
+      &.router-link-active
+        .teacher-link
+          color: #0000FF
+          font-size:13px
 </style>

@@ -86,5 +86,47 @@ export default {
   convertGender(gender) {
     'use strict'
     return '男' === gender ? 1 : 2
+  },
+  convertName(sender_mark , sender_id) {
+    'use strict';
+    if(sender_mark == 1){
+      switch (sender_id) {
+        case 1:
+          return '教师1'
+        case 2:
+          return '教师2'
+        case 3:
+          return '教师3'
+        case 4:
+          return '教师4'
+        case 5:
+          return '教师5'
+        case 6:
+          return '教师6'
+        case 7:
+          return '教师7'
+        case 8:
+          return '教师8'
+    }}
+    else {
+      switch (sender_id) {
+        case 1:
+          return '学生1'
+        case 2:
+          return '学生2'
+        case 3:
+          return '学生3'
+        case 4:
+          return '学生4'
+        case 5:
+          return '学生5'
+        case 6:
+          return '学生6'
+        case 7:
+          return '学生7'
+        case 8:
+          return '学生8'
+    }    
+    }
   }
 }

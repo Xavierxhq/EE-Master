@@ -6,6 +6,7 @@ import actions from './actions'
 import Storage from '@/common/util/storage'
 import imgUrl from '@/assets/logo.png'
 import course from './modules/course'
+import cbroom from './modules/cbroom'
 import note from './modules/note'
 import plan from './modules/plan'
 import friend from './modules/friend'
@@ -43,6 +44,7 @@ export default new Vuex.Store({
     homework,
     chatMessage,
     forum,
-    teacher
+    teacher,
+    cbroom
   }
 })
