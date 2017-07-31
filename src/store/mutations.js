@@ -37,7 +37,7 @@ export default {
     state.user.parentname = last.parentname
     state.user.parenttel = last.parenttel
   },
-  [types.UPDATE_USER_NAME_AND_INTRO] (state, {data}) {
+  [types.UPDATE_USER_NAME_AND_INTRO] (state, data) {
     state.user.name = data.name
     state.user.intro = data.intro
   },
