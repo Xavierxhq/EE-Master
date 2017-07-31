@@ -83,6 +83,7 @@ import { mapGetters } from 'vuex'
 import { Toast,MessageBox } from 'mint-ui'
 import types from '@/store/types'
 import Storage from '@/common/util/storage'
+import ImageUtil from '@/common/util/image'
 
 export default {
   name: 'ImagePickerVue',
@@ -97,9 +98,31 @@ export default {
   },
   methods: {
     handleFile() {
-      let imgFile = this.$refs.inputer.files[0]
-      let reader = new FileReader()
       this.imgUrl = null
+      let imgFile = this.$refs.inputer.files[0]
+      
+      ImageUtil.convertImageToBase64(imgFile).then(resolve => {
+        if (imgFile.size / 1024000 > 1){
+          ImageUtil.scaleImage(resolve, 4).then(resolve => {
+            this.imgUrl = resolve
+          }).catch(error => {
+            Toast({
+              message: '保存失败',
+              position: 'bottom',
+              duration: 2000
+            })
+          })
+        } else {
+          this.imgUrl = resolve
+        }
+      }).catch(error => {
+        Toast({
+          message: '保存失败',
+          position: 'bottom',
+          duration: 2000
+        })
+      })
+      // let reader = new FileReader()
 
       /*
       let _this = this,
@@ -110,10 +133,10 @@ export default {
       })
       */
 
+        /*
       reader.readAsDataURL(imgFile)
 
       reader.onload = e => {
-        /*
         var image = new Image()
         image.src = e.target.result
 
@@ -158,12 +181,12 @@ export default {
           }
           console.log(JSON.stringify(_this.imgUrl))
         }
-      */
       }
 
       reader.onloadend = e => {
         this.imgUrl = e.target.result
       }
+      */
     },
     uploadImg() {
       if (this.imgUrl!==null){

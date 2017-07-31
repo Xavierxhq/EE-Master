@@ -1,6 +1,7 @@
 import atypes from './action-types'
 import types from './types'
 import Rongyun from '@/common/util/rongyun'
+import Storage from '@/common/util/storage'
 
 export default {
   [atypes.LOGOUT](context) {
@@ -15,9 +16,9 @@ export default {
       context.commit(types.CLEAR)
       //清空本地storage内容
       let keys = Object.getOwnPropertyNames(Storage)
-      for (let i = 0; i < keys.length; i++) {
-        localStorage.removeItem(Storage[keys[i]])
-      }
+      keys.forEach(item => {
+        localStorage.removeItem(item)
+      })
       //断开融云连接
       Rongyun.disconnect()
       //清空聊天数据库
