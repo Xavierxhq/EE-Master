@@ -106,5 +106,10 @@ export default [
         component: resolve => require(['@/components/login/RegisterStep4'], resolve)
       }
     ]
-  }
+  },
+  {
+    path: '/favorite',
+    name: 'favorite',
+    component: resolve => require(['@/components/favorite/favorite'], resolve)
+  },
 ]

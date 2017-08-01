@@ -41,5 +41,13 @@ export default {
   //资讯，我想说列表
   MessageList: 'MessageListServletMobile',
   //资讯，我想说详细信息
-  MessageInfo: 'MessageInfoServletMobile'
+  MessageInfo: 'MessageInfoServletMobile',
+  //收藏
+  Messagemark: 'MessagemarkServletMobile',
+  //课程列表
+  CourseList: 'CourseListServletMobile',
+  //微课课程信息列表
+  MicrocourseInfo: 'MicrocourseInfoServletMobile',
+  //课程信息列表
+  CurriculumInfo: 'WebcastcourseInfoServletMobile' 
 }

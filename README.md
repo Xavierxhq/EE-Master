@@ -19,6 +19,11 @@ npm run build
 # build for production and view the bundle analyzer report
 npm run build --report
 ```
+#### 更新 2017-08-01
+- 多方文件整合并进行完善
+- 增加功能  
+  新增页面：论坛、教师列表、课程列表，以及具体内容页面  
+- 完善头像修改功能
 
 #### 更新 2017-07-27
 - 增加修改头像功能（目前只支持选择相册照片）

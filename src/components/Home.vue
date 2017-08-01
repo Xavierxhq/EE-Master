@@ -2,7 +2,7 @@
   <div>
     <div class="title">
       <span class="glyphicon glyphicon-align-left" aria-hidden="true" @click="showMenu"></span>
-      <span class="app-name">ExcellentEducation</span>
+      <span class="app-name">E.E.</span>
       <span class="glyphicon glyphicon-search" aria-hidden="true" @click="search"></span>
     </div>
     <!--侧滑的菜单栏-->
@@ -34,6 +34,9 @@
               <badge size="small" v-if="unopen.length">
                 <slot slot="name">{{unopen.length}}</slot>
               </badge>
+            </router-link>
+            <router-link to="/favorite" class="menu-link-a">
+              <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>我的收藏
             </router-link>
             <router-link to="/setting" class="menu-link-a">
               <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>设置
